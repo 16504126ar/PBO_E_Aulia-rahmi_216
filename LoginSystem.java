@@ -1,33 +1,41 @@
 package Tugas;
-
+import java.util.Scanner;
 class Tugas1_Modul_1 {
-    public static <Scanner> void main(String[] args) {
+    public static void main(String[] args) {
         Scanner objinput = new Scanner(System.in);
         int Pilihan;
         boolean ulang = true;
+
         do {
-            System.out.println("Pilih Login : \n");
-            System.out.println("1. Admin\n");
-            System.out.println("2. Mahasiswa\n");
-            System.out.print("Masukkan Pilihan :");
-            objinput.notify();
-            Object clone = objinput.clone();
+            System.out.println("\nPilih Login : ");
+            System.out.println("1. Admin");
+            System.out.println("2. Mahasiswa");
+            System.out.print("Masukkan Pilihan : ");
+
+            while (!objinput.hasNextInt()) {
+                System.out.println("Input tidak valid! Masukkan angka 1 atau 2.");
+                objinput.next();
+                System.out.print("Masukkan Pilihan : ");
+            }
+            Pilihan = objinput.nextInt();
+            objinput.nextLine();
 
             if (Pilihan == 1) {
                 System.out.println("\n=== Login Admin ===");
                 boolean LoginAdminBerhasil = false;
+
                 do {
-                    System.out.println("Masukkan Username : ");
-                    String username = objinput.clone();
-                    System.out.println("Masukkan Password : ");
-                    String password = objinput.clone();
+                    System.out.print("Masukkan Username : ");
+                    String username = objinput.nextLine();
+                    System.out.print("Masukkan Password : ");
+                    String password = objinput.nextLine();
 
                     if (username.equals("Admin216") && password.equals("Password216")) {
                         System.out.println("Login Admin berhasil");
                         LoginAdminBerhasil = true;
                         ulang = false;
                     } else {
-                        System.out.println("Login Gagal! Username atau Password salah.");
+                        System.out.println("Login Gagal! Username atau Password salah.\n");
                     }
                 } while (!LoginAdminBerhasil);
 
@@ -36,27 +44,28 @@ class Tugas1_Modul_1 {
                 boolean LoginMahasiswaBerhasil = false;
 
                 do {
-                    System.out.println("Masukkan Nama :");
-                    String nama = objinput.clone();
-                    System.out.println("Masukkan nim :");
-                    String nim = objinput.clone();
+                    System.out.print("Masukkan Nama : ");
+                    String nama = objinput.nextLine();
+                    System.out.print("Masukkan NIM : ");
+                    String nim = objinput.nextLine();
 
                     if (nama.equals("Aulia rahmi") && nim.equals("202410370110216")) {
                         System.out.println("Login Mahasiswa Berhasil");
                         System.out.println("Nama : " + nama);
-                        System.out.println("Nim : " + nim);
+                        System.out.println("NIM : " + nim);
                         LoginMahasiswaBerhasil = true;
                         ulang = false;
                     } else {
-                        System.out.println("Login Gagal! Nama atau Nim salah.");
+                        System.out.println("Login Gagal! Nama atau NIM salah.\n");
                     }
                 } while (!LoginMahasiswaBerhasil);
+
             } else {
-                System.out.println("Pilihan Tidak Valid!");
+                System.out.println("Pilihan Tidak Valid!\n");
             }
 
         } while (ulang);
 
-        objinput.clone();
+        objinput.close();
     }
 }
